@@ -1,0 +1,56 @@
+/* CSS declarations go here */
+* {
+    font-family: "Oswald", sans-serif;
+}
+
+.login_container {
+margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.welcome {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-image: url(/img/cosmos.jpg/);
+  background-size: cover;
+}
+
+input {
+  color:black;
+}
+
+textarea {
+  color:black;
+}
+nav {
+  position:absolute;
+  top:0px;
+  right: 0px;
+}

@@ -1,0 +1,15 @@
+<div class="container">
+<p>What's up?!?!? Welcome to the Profile Setup page!! Enter your real name (if you want!), a little information about yourself, and where you're located!</p>
+<p>Or, say F that noise and just head right to your journal!</p>
+<form action="/users/new_user" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+Name:<br>
+<input type="text" name="user[real_name]"><br>
+Location:<br>
+<input type="text" name="user[location]"><br>
+Description of Your Self:<br>
+<textarea name="user[description]"></textarea>
+<br>
+<input type="submit" value="Dream On!">
+</form>
+</div>

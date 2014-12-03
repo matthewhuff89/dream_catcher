@@ -1,4 +1,4 @@
-dream_catcher
-=============
+infinite_skeleton
+=================
 
-Repository for Matthew Huff's Dream Catcher web app 
+Skeleton for making apps like a BOSS
