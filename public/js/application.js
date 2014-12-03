@@ -16,10 +16,27 @@ $(document).ready(function() {
       url: $target.attr("action"),
       data: $target.serialize()
   }).done(function(response) {
-      $("body").fadeOut(1400)
-      console.log(response);
-      $("body").html(response);
+      $("body").fadeOut(1400, function() {
+         console.log(response);
+      $("body").html(response).fadeIn(1400);
+      })
+
   });
     });
+
+  $("a").click(function () {
+    event.preventDefault();
+    var $target = $(event.target);
+    $.ajax({
+      type:"GET",
+      url: $target.attr("href")
+    }).done(function(response) {
+      $("body").fadeOut(1400, function() {
+        console.log(response);
+        $("body").html(response).fadeIn(1400);
+      });
+    });
+  });
+
 });
 
