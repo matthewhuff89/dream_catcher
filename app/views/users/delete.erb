@@ -1,0 +1,7 @@
+<div class="container">
+<form class="delete" action="/<%= session[:username] %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <p>You sure you want to do this? All of your Account info, and all of your Dreams will be deleted permanently! If you're sure, click "Delete Account!"</p><br>
+  <input type="submit" value="Delete Account">
+</form>
+</div>

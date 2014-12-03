@@ -9,6 +9,9 @@ Date:<br>
 Description:<br>
 <textarea name="dream[description]"><%= @dream.description %></textarea><br>
 <br>
+
+<label for="words">Dream Words:</label>
+<input id="words" name="words" value="<% @dream.words.uniq.each do |word| %><%= word.name %><% end %>"</br>
 <input type="submit" value="Update Dream!!">
 </form>
 </div>

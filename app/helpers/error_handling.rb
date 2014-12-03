@@ -10,5 +10,5 @@ def display_error
 end
 
 def set_error(msg)
-  session[:error] = {"Error" => [msg]}
+  session[:error] = {"Error: " => [msg]}
 end

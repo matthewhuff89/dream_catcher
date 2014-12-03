@@ -1,0 +1,5 @@
+<div class="container">
+  <% @words.uniq.each do |word| %>
+  <a href="/<%= @user.username %>/words/<%= word.name %>"><%= word.name %>: Shows up <%= word.dreams.count %> times!</a><br>
+  <% end %>
+</div>

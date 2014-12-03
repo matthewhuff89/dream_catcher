@@ -1,22 +1,53 @@
 # TODO: Implement Error Handling.
 
 get "/" do
-  erb :'welcome'
+  if current_user
+   erb :'users/home'
+  else
+   erb :'welcome'
+  end
 end
 
 get "/goodbye" do
   erb :goodbye
 end
 
+post '/users/login' do
+  user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
+  if user
+    session[:username] = user.username
+    session[:user_id] = user.id
+    redirect("/#{user.username}/home")
+  else
+    set_error("Something ain't right here, either with your password or your username")
+    redirect("/")
+  end
+end
+
+
 post '/users/signup' do
-  user = User.create(params[:user])
-  session[:user_id] = user.id
-  session[:username] = user.username
-  redirect('/users/new_user')
+  user = User.new(params[:user])
+  if user.save
+    session[:user_id] = user.id
+    session[:username] = user.username
+    redirect('/users/new_user')
+  else
+    session[:error] = user.errors.messages
+    redirect("/")
+  end
+end
+
+get "/error" do
+  erb :'errors/error_display'
 end
 
 get "/users/new_user" do
-  erb :'users/new_user'
+ if current_user
+    erb :'users/new_user'
+ else
+  set_error("You ain't logged in. You can't go there")
+  redirect("/")
+ end
 end
 
 put "/users/new_user" do
@@ -28,10 +59,24 @@ end
 # I need to make sure that random people can't just post dreams to anyone
 # I need to set an error here too.
 get "/:username/home" do
-  if session[:username] == params[:username]
+  if current_user && session[:username] == params[:username]
     erb :'users/home'
   else
-    redirect("/")
+    if current_user
+      set_error("Nope. You can't go there bro. Log in if you want to go there.")
+      redirect("/#{session[:username]}/home")
+    else
+      redirect("/")
+    end
+  end
+end
+
+get "/:username/delete" do
+  if current_user && session[:username] == params[:username]
+   erb :'users/delete'
+  else
+    set_error("Nope. You can't do that bro. Delete your own damn account")
+    redirect("/#{session[:username]}/home")
   end
 end
 
@@ -50,7 +95,12 @@ get "/:username/profile" do
 end
 
 get "/:username/profile/edit" do
-  erb :'users/edit_profile'
+  if current_user && session[:username] == params[:username]
+    erb :'users/edit_profile'
+  else
+    set_error("Nope, you can't edit that profile")
+    redirect("/")
+  end
 end
 
 put "/:username/profile/edit" do
@@ -61,10 +111,11 @@ end
 
 
 get "/:username/dreams/new_dream" do
-  if session[:username] != params[:username]
-    redirect("/")
-  else
+  if current_user && session[:username] == params[:username]
     erb :'dreams/new_dream'
+  else
+    set_error("Nope. Gotta make dreams from your own account.")
+    redirect("/")
   end
 end
 
@@ -88,26 +139,27 @@ get "/:username/dreams/:dream_id" do
 end
 
 get "/:username/dreams/:dream_id/edit" do
-  @dream = Dream.find(params[:dream_id])
-  erb :'dreams/edit_dream'
+  if current_user && session[:username] == params[:username]
+    @dream = Dream.find(params[:dream_id])
+   erb :'dreams/edit_dream'
+ else
+    set_error("You can't edit someone else's dreams. This ain't Inception")
+    redirect("/")
+  end
 end
 
 put "/:username/dreams/:dream_id/edit" do
   @dream = Dream.find(params[:dream_id])
   @dream.update(params[:dream])
+  @words = word_creator(word_splitter(params[:words]))
+  @words.uniq.each { |word| @dream.words << word}
+  @user = User.find_by(username: params[:username])
+  @user.dreams << @dream
   redirect("/#{@dream.user.username}/dreams/#{@dream.id}")
 end
 # Add an error
 
-post '/users/login' do
-  user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
-  if user
-    session[:username] = user.username
-    session[:user_id] = user.id
-    redirect("/#{user.username}/home")
-  end
-  redirect("/")
-end
+
 
 get '/users/logout' do
   session[:username] = nil
@@ -115,10 +167,17 @@ get '/users/logout' do
   redirect("/")
 end
 
+get '/:username/words/all' do
+  @user = User.find_by(username: params[:username])
+  @words = @user.words.uniq
+  erb :'words/all_words'
+end
+
 get '/:username/words/:name' do
   @word = Word.find_by(name: params[:name])
   erb :'words/show_word'
 end
+
 
 
 # get '/welcome' do

@@ -3,6 +3,13 @@
     font-family: "Oswald", sans-serif;
 }
 
+a {
+  color:white;
+}
+
+button a {
+  color:black;
+}
 
 .welcome_container {
   margin: 20px auto;
