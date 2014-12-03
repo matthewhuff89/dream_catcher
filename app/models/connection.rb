@@ -3,5 +3,5 @@
 class Connection < ActiveRecord::Base
   # Remember to create a migration!
   belongs_to :dream
-  belongs_to :symbol
+  belongs_to :word
 end

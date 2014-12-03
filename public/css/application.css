@@ -3,6 +3,18 @@
     font-family: "Oswald", sans-serif;
 }
 
+
+.welcome_container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px;
+  font-family: "Oswald", sans-serif;
+  color: white;
+  font-weight: bold;
+}
+
+
 .login_container {
 margin: 20px auto;
   width: 600px;

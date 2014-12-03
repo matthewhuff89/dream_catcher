@@ -1,7 +1,7 @@
 # TODO: Implement Error Handling.
 
 get "/" do
- erb :'welcome'
+  erb :'welcome'
 end
 
 get "/goodbye" do
@@ -71,8 +71,8 @@ end
 post "/:username/dreams/new_dream" do
   @user = User.find(session[:user_id])
   @dream = Dream.create(params[:dream])
-  @symbols = symbol_creator(symbol_splitter(params[:symbols]))
-  @symbols.each { |symbol| @dream.symbols << symbol}
+  @words = word_creator(word_splitter(params[:words]))
+  @words.each { |word| @dream.words << word}
   @user.dreams << @dream
   redirect("/#{@user.username}/dreams/#{@dream.id}")
 end
@@ -115,9 +115,9 @@ get '/users/logout' do
   redirect("/")
 end
 
-get '/:username/symbols/:name' do
-  @symbol = Symbol.find_by(name: params[:name])
-  erb :show_symbol
+get '/:username/words/:name' do
+  @word = Word.find_by(name: params[:name])
+  erb :'words/show_word'
 end
 
 

@@ -5,5 +5,6 @@ class Dream < ActiveRecord::Base
   validates :dream_date, {presence: true}
   # May need to add a validation to check the format of the date also.
   belongs_to :user
-  has_many :symbols
+  has_many :connections
+  has_many :words, through: :connections
 end

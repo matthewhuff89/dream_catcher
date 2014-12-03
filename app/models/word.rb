@@ -1,4 +1,4 @@
-class Symbol < ActiveRecord::Base
+class Word < ActiveRecord::Base
   # Remember to create a migration!
   validates :name, presence: true
   has_many :connections
