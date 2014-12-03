@@ -4,4 +4,9 @@
   <%= @user.email %><br>
   <%= @user.location %><br>
   <%= @user.description %><br>
+
+<form action="/<%= @user.username %>/profile/edit" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+
+</form>
 </div>

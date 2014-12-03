@@ -48,6 +48,8 @@ input {
 
 textarea {
   color:black;
+  width: 80%;
+  height: 80%;
 }
 nav {
   position:absolute;

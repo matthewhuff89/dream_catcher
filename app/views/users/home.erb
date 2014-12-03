@@ -4,4 +4,12 @@ Welcome to your Home Page!<br>
 <a href="/<%= session[:username] %>/dreams/new_dream">Log A Dream!</a><br>
 <a href="/<%= session[:username] %>/symbols">Your Symbols!</a><br>
 <a href="/<%= session[:username] %>/dreams/all">Your Dreams!</a><br>
+<br>
+<br>
+<br>
+<!-- Add an on click jQuery here to warn the user if he really wants to do this -->
+<form action="/<%= session[:username] %>/delete" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete Account">
+</form>
 </div>

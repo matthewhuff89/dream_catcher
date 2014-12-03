@@ -1,0 +1,19 @@
+<div class="container">
+<form action="/<%= @user.username %>/profile/edit" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+Username:<br>
+<input type="text" name="user[username]" value="<%= @user.username %>"><br>
+Real Name:<br>
+<input type="text" name="user[real_name]" value="<%= @user.real_name %>"><br>
+Email:<br>
+<input type="text" name="user[email]" value="<%= @user.email %>"><br>
+Location:<br>
+<input type="text" name="user[location]" value="<%= @user.location %>">
+Description:<br>
+<textarea name="user[description]"><%= @user.description %></textarea><br>
+<br>
+<!-- <label for="categories">Tags:</label>
+<input id="entry_tags" name="tags" value="<%= @entry.tags.first.name %>"></br> -->
+<input type="submit" value="Update Profile!!">
+</form>
+</div>

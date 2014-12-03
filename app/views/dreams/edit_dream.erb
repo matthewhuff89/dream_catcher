@@ -1,0 +1,14 @@
+<div class="container">
+Remembered some more details from your dream? Type it down bruh!
+<form action="/<%= @dream.user.username %>/dreams/<%= @dream.id %>/edit" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+Title:<br>
+<input type="text" name="dream[title]" value="<%= @dream.title %>"><br>
+Date:<br>
+<input type="text" name="dream[dream_date]" value="<%= @dream.dream_date %>"><br>
+Description:<br>
+<textarea name="dream[description]"><%= @dream.description %></textarea><br>
+<br>
+<input type="submit" value="Update Dream!!">
+</form>
+</div>

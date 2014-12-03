@@ -4,6 +4,10 @@ get "/" do
  erb :'welcome'
 end
 
+get "/goodbye" do
+  erb :goodbye
+end
+
 post '/users/signup' do
   user = User.create(params[:user])
   session[:user_id] = user.id
@@ -31,9 +35,28 @@ get "/:username/home" do
   end
 end
 
+delete '/:username/delete' do
+  @user = User.find(session[:user_id])
+  @user.dreams.destroy_all
+  @user.destroy
+  session[:username] = nil
+  session[:user_id] = nil
+  redirect("/goodbye")
+end
+
 get "/:username/profile" do
   @user = User.find(session[:user_id])
   erb :'users/profile'
+end
+
+get "/:username/profile/edit" do
+  erb :'users/edit_profile'
+end
+
+put "/:username/profile/edit" do
+  @user = User.find(session[:user_id])
+  @user.update(params[:user])
+  redirect("/#{@user.username}/profile")
 end
 
 
@@ -63,7 +86,16 @@ get "/:username/dreams/:dream_id" do
   erb :'dreams/show_dream'
 end
 
+get "/:username/dreams/:dream_id/edit" do
+  @dream = Dream.find(params[:dream_id])
+  erb :'dreams/edit_dream'
+end
 
+put "/:username/dreams/:dream_id/edit" do
+  @dream = Dream.find(params[:dream_id])
+  @dream.update(params[:dream])
+  redirect("/#{@dream.user.username}/dreams/#{@dream.id}")
+end
 # Add an error
 
 post '/users/login' do

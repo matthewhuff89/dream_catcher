@@ -2,5 +2,12 @@
 <h1><%= @dream.title %></h1>
 <h2><%= @dream.dream_date %></h2>
 <p><%= @dream.description %></p>
+</div>
 
+<div class="container">
+<% if @dream.user.username == session[:username] %>
+<a href="/<%= @dream.user.username %>/dreams/<%= @dream.id %>/edit">Edit This Dream</a>
+<% end %>
+<br>
+<a href="/<%= @dream.user.username %>/dreams/all">Return To Dreams</a>
 </div>
