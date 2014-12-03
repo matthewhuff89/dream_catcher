@@ -20,6 +20,7 @@
 <body>
 <% if current_user %>
 <nav>
+  <p>What's up, <%= session[:username] %>?</p>
   <a href="/<%= session[:username] %>/home">Return to Your Home!</a>
   <a href="/users/logout">Logout?</a>
 </nav>

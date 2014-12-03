@@ -18,33 +18,11 @@ end
 put "/users/new_user" do
   @user = User.find(session[:user_id])
   @user.update(params[:user])
-  redirect("/#{@user.username}/new_dream")
+  redirect("/#{@user.username}/dreams/new_dream")
 end
 
 # I need to make sure that random people can't just post dreams to anyone
 # I need to set an error here too.
-get "/:username/new_dream" do
-  if session[:username] != params[:username]
-    redirect("/")
-  else
-    erb :'dreams/new_dream'
-  end
-end
-
-post "/:username/new_dream" do
-  @user = User.find(session[:user_id])
-  @dream = Dream.create(params[:dream])
-  p @user
-  @user.dreams << @dream
-  redirect("/#{@user.username}/#{@dream.id}")
-end
-
-get "/:username/:dream_id" do
-  @dream = Dream.find(params[:dream_id])
-  erb :'dreams/show_dream'
-end
-
-# Add an error
 get "/:username/home" do
   if session[:username] == params[:username]
     erb :'users/home'
@@ -52,15 +30,51 @@ get "/:username/home" do
     redirect("/")
   end
 end
-# post '/users/login' do
-#   user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
-#   if user
-#     session[:username] = user.username
-#     session[:user_id] = user.id
-#     redirect("/welcome")
-#   end
-#   redirect("/users/login")
-# end
+
+get "/:username/profile" do
+  @user = User.find(session[:user_id])
+  erb :'users/profile'
+end
+
+
+get "/:username/dreams/new_dream" do
+  if session[:username] != params[:username]
+    redirect("/")
+  else
+    erb :'dreams/new_dream'
+  end
+end
+
+post "/:username/dreams/new_dream" do
+  @user = User.find(session[:user_id])
+  @dream = Dream.create(params[:dream])
+  p @user
+  @user.dreams << @dream
+  redirect("/#{@user.username}/dreams/#{@dream.id}")
+end
+
+get "/:username/dreams/all" do
+  @dreams = User.find(session[:user_id]).dreams
+  erb :'dreams/all'
+end
+
+get "/:username/dreams/:dream_id" do
+  @dream = Dream.find(params[:dream_id])
+  erb :'dreams/show_dream'
+end
+
+
+# Add an error
+
+post '/users/login' do
+  user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
+  if user
+    session[:username] = user.username
+    session[:user_id] = user.id
+    redirect("/#{user.username}/home")
+  end
+  redirect("/")
+end
 
 get '/users/logout' do
   session[:username] = nil

@@ -54,3 +54,7 @@ nav {
   top:0px;
   right: 0px;
 }
+
+nav p {
+  color:white;
+}
