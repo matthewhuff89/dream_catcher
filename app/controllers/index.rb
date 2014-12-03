@@ -71,7 +71,8 @@ end
 post "/:username/dreams/new_dream" do
   @user = User.find(session[:user_id])
   @dream = Dream.create(params[:dream])
-  p @user
+  @symbols = symbol_creator(symbol_splitter(params[:symbols]))
+  @symbols.each { |symbol| @dream.symbols << symbol}
   @user.dreams << @dream
   redirect("/#{@user.username}/dreams/#{@dream.id}")
 end
@@ -113,6 +114,12 @@ get '/users/logout' do
   session[:user_id] = nil
   redirect("/")
 end
+
+get '/:username/symbols/:name' do
+  @symbol = Symbol.find_by(name: params[:name])
+  erb :show_symbol
+end
+
 
 # get '/welcome' do
 #   if current_user == false

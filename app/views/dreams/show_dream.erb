@@ -2,6 +2,9 @@
 <h1><%= @dream.title %></h1>
 <h2><%= @dream.dream_date %></h2>
 <p><%= @dream.description %></p>
+<% @dream.symbols.each do |symbol| %>
+<a href="<%= @dream.user.username %>/symbols/<%= symbol.name %>"><%= symbol.name %></a>
+<% end %>
 </div>
 
 <div class="container">

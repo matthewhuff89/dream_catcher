@@ -1,0 +1,8 @@
+<div class="container">
+<%= @symbol.name %>
+<% @symbol.dreams.each do |dream| %>
+<br>
+<a href="/<%= dream.user.username %>/dreams/<%= dream.id %>"><%= dream.title %> - <%= dream.dream_date %></a><br>
+<% end %>
+
+</div>
