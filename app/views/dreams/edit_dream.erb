@@ -11,7 +11,12 @@ Description:<br>
 <br>
 
 <label for="words">Dream Words:</label>
-<input id="words" name="words" value="<% @dream.words.uniq.each do |word| %><%= word.name %><% end %>"</br>
+<input id="words" name="words" value="<% @dream.words.uniq.each do |word| %><%= word.name %>, <% end %>"</br>
 <input type="submit" value="Update Dream!!">
+</form>
+
+<form action="/<%= @dream.user.username %>/dreams/<%= @dream.id %>" method="POST">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete This Dream!">
 </form>
 </div>

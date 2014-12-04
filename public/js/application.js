@@ -59,7 +59,6 @@ $(document).ready(function() {
     });
   });
 
-
   $("a").click(function () {
     event.preventDefault();
     var $target = $(event.target);

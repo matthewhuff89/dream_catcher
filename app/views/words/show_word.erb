@@ -1,6 +1,6 @@
 <div class="container">
 <%= @word.name %>
-<% @word.dreams.each do |dream| %>
+<% @word.dreams.uniq.each do |dream| %>
 <br>
 <a href="/<%= dream.user.username %>/dreams/<%= dream.id %>"><%= dream.title %> - <%= dream.dream_date %></a><br>
 <% end %>
