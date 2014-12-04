@@ -15,7 +15,7 @@ Description:<br>
 <input type="submit" value="Update Dream!!">
 </form>
 
-<form action="/<%= @dream.user.username %>/dreams/<%= @dream.id %>" method="POST">
+<form class="delete" action="/<%= @dream.user.username %>/dreams/<%= @dream.id %>" method="POST">
 <input type="hidden" name="_method" value="DELETE">
 <input type="submit" value="Delete This Dream!">
 </form>
