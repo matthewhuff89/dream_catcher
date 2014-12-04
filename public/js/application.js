@@ -5,6 +5,8 @@ $(document).ready(function() {
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   // Need to prevent the Default action of the Login form.
+  // I just learned about "window.location = URL", I should probably replace a lot of this with it.
+
   $(".login").submit(function () {
     console.log(event)
     event.preventDefault();
