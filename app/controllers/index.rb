@@ -112,7 +112,7 @@ put "/:username/dreams/:dream_id/edit" do
   @dream = Dream.find(params[:dream_id])
   @dream.update(params[:dream])
   @words = word_creator(word_splitter(params[:words]))
-  @words.uniq.each { |word| @dream.words << word}
+  @words.uniq.each { |word| @dream.words.find_or_create_by(name: word.name)}
   @user = User.find_by(username: params[:username])
   @user.dreams << @dream
   redirect("/#{@dream.user.username}/dreams/#{@dream.id}")
