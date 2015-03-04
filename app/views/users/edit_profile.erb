@@ -1,5 +1,5 @@
 <div class="container">
-<form action="/<%= @user.username %>/profile/edit" method="POST">
+<form class="update" action="/<%= @user.username %>/profile/edit" method="POST">
   <input type="hidden" name="_method" value="PUT">
 Username:<br>
 <input type="text" name="user[username]" value="<%= @user.username %>"><br>

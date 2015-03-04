@@ -37,14 +37,13 @@ $(document).ready(function() {
          $("body").html(response).fadeIn(1400);
        });
      });
-
    });
 
    $(".delete").submit(function() {
      console.log(event)
      event.preventDefault();
      var $target = $(event.target);
-     $target.find("input[type=submit]").val("Deleting Account...");
+     $target.find("input[type=submit]").val("Deleting...");
 
     $.ajax({
        type:"DELETE",
@@ -55,6 +54,22 @@ $(document).ready(function() {
        });
      });
    });
+
+   $(".update").submit(function() {
+      event.preventDefault();
+      var $target = $(event.target);
+      $target.find("input[type=submit]").val("Updating...");
+
+      $.ajax({
+        type:"PUT",
+        url: $target.attr("action"),
+        data: $target.serialize()
+      }).done(function(response) {
+          $("body").fadeOut(1400, function() {
+            $("body").html(response).fadeIn(1400);
+          });
+        });
+      });
 
    $("a").click(function() {
      event.preventDefault();
