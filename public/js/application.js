@@ -7,73 +7,73 @@ $(document).ready(function() {
   // Need to prevent the Default action of the Login form.
   // I just learned about "window.location = URL", I should probably replace a lot of this with it.
 
-  // $(".login").submit(function () {
-  //   console.log(event)
-  //   event.preventDefault();
-  //   var $target = $(event.target);
-  //   $target.find(".login_submit").val("Logging in...");
+   $(".login").submit(function () {
+     console.log(event)
+     event.preventDefault();
+     var $target = $(event.target);
+     $target.find(".login_submit").val("Logging in...");
   //   // So the pushed in data still needs to get to the post
-  //   $.ajax({
-  //     type:"POST",
-  //     url: $target.attr("action"),
-  //     data: $target.serialize()
-  // }).done(function(response) {
-  //     $("body").fadeOut(1400, function() {
-  //        console.log(response);
-  //     $("body").html(response).fadeIn(1400);
-  //     })
+     $.ajax({
+       type:"POST",
+       url: $target.attr("action"),
+       data: $target.serialize()
+   }).done(function(response) {
+       $("body").fadeOut(1400, function() {
+          console.log(response);
+       $("body").html(response).fadeIn(1400);
+       })
 
-  // });
-  //   });
+   });
+     });
 
-  // $(".signup").submit(function () {
-  //   console.log(event)
-  //   event.preventDefault();
-  //   var $target = $(event.target);
-  //   $target.find("input[type=submit]").val("Creating Account...");
+   $(".signup").submit(function () {
+     console.log(event)
+     event.preventDefault();
+     var $target = $(event.target);
+     $target.find("input[type=submit]").val("Creating Account...");
 
-  //   $.ajax({
-  //     type: "POST",
-  //     url: $target.attr("action"),
-  //     data: $target.serialize()
-  //   }).done(function(response) {
-  //     $("body").fadeOut(1400, function() {
-  //       console.log(response);
-  //       $("body").html(response).fadeIn(1400);
-  //     });
-  //   });
+     $.ajax({
+       type: "POST",
+       url: $target.attr("action"),
+       data: $target.serialize()
+     }).done(function(response) {
+       $("body").fadeOut(1400, function() {
+         console.log(response);
+         $("body").html(response).fadeIn(1400);
+       });
+     });
 
-  // });
+   });
 
-  // $(".delete").submit(function () {
-  //   console.log(event)
-  //   event.preventDefault();
-  //   var $target = $(event.target);
-  //   $target.find("input[type=submit]").val("Deleting Account...");
+   $(".delete").submit(function () {
+     console.log(event)
+     event.preventDefault();
+     var $target = $(event.target);
+     $target.find("input[type=submit]").val("Deleting Account...");
 
-  //   $.ajax({
-  //     type:"DELETE",
-  //     url: $target.attr("action")
-  //   }).done(function(response) {
-  //     $("body").fadeOut(1400, function() {
-  //       $("body").html(response).fadeIn(1400);
-  //     });
-  //   });
-  // });
+    $.ajax({
+       type:"DELETE",
+       url: $target.attr("action")
+     }).done(function(response) {
+       $("body").fadeOut(1400, function() {
+         $("body").html(response).fadeIn(1400);
+       });
+     });
+   });
 
-  // $("a").click(function () {
-  //   event.preventDefault();
-  //   var $target = $(event.target);
-  //   $.ajax({
-  //     type:"GET",
-  //     url: $target.attr("href")
-  //   }).done(function(response) {
-  //     $("body").fadeOut(1400, function() {
-  //       console.log(response);
-  //       $("body").html(response).fadeIn(1400);
-  //     });
-  //   });
-  // });
+   $("a").click(function () {
+     event.preventDefault();
+     var $target = $(event.target);
+     $.ajax({
+       type:"GET",
+       url: $target.attr("href")
+     }).done(function(response) {
+       $("body").fadeOut(1400, function() {
+         console.log(response);
+         $("body").html(response).fadeIn(1400);
+       });
+     });
+   });
 
 });
 
