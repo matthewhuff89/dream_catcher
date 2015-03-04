@@ -1,3 +1,4 @@
+after { ActiveRecord::Base.connection.close }
 
 # I need to make sure that random people can't just post dreams to anyone
 # I need to set an error here too.

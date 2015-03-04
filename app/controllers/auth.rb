@@ -1,3 +1,5 @@
+after { ActiveRecord::Base.connection.close }
+
 get "/" do
   if current_user
    erb :'users/home'
