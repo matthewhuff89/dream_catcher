@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // I just learned about "window.location = URL", I should probably replace a lot of this with it.
 
-   $(".login").submit(function () {
+   $(".login").submit(function() {
      console.log(event)
      event.preventDefault();
      var $target = $(event.target);
@@ -21,7 +21,7 @@ $(document).ready(function() {
    });
      });
 
-   $(".signup").submit(function () {
+   $(".signup").submit(function() {
      console.log(event)
      event.preventDefault();
      var $target = $(event.target);
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
    });
 
-   $(".delete").submit(function () {
+   $(".delete").submit(function() {
      console.log(event)
      event.preventDefault();
      var $target = $(event.target);
@@ -56,7 +56,7 @@ $(document).ready(function() {
      });
    });
 
-   $("a").click(function () {
+   $("a").click(function() {
      event.preventDefault();
      var $target = $(event.target);
      $.ajax({
