@@ -1,9 +1,11 @@
 class CreateInterpretations < ActiveRecord::Migration
   def change
-    t.text :content
-    t.references :user
-    t.references :dream
+    create_table :interpretations do |t|
+      t.text :content
+      t.references :user
+      t.references :dream
 
-    t.timestamps
+      t.timestamps
+    end
   end
 end
