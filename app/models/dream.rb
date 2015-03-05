@@ -7,4 +7,5 @@ class Dream < ActiveRecord::Base
   belongs_to :user
   has_many :connections
   has_many :words, through: :connections
+  has_many :interpretations
 end
