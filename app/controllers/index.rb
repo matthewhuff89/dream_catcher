@@ -141,6 +141,13 @@ get '/:username/words/:name' do
 end
 # Words End
 
+# Interpretations
+post '/:username/dreams/:dream_id' do
+  @interpretation = Interpretation.create(params[:interpretation])
+  redirect("/#{@dream.user.username}/dreams/#{@dream.id}")
+end
+
+
 
 
 # get '/welcome' do
